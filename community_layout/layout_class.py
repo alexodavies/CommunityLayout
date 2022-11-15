@@ -5,7 +5,7 @@ import pandas as pd
 import networkx.algorithms.community as community
 from collections import Counter
 from tqdm import tqdm
-from datashader.bundling import hammer_bundle
+# from datashader.bundling import hammer_bundle
 
 
 def load_original():
@@ -17,13 +17,13 @@ def load_original():
     return G
 
 class CommunityLayout:
-    def __init__(self, G = None,
+    def __init__(self, G,
                  layout_algorithm = nx.spring_layout, layout_kwargs = {"weight":"weight", "k":75, "iterations":1000},
                  community_compression = 0.25):
-        if G is not None:
+        try:
             self.G = G
-        else:
-            self.G = load_original()
+        except:
+            raise Exception("No graph passed to init")
 
         self.G.remove_edges_from(nx.selfloop_edges(self.G))
         self.layout_algorithm = layout_algorithm
@@ -52,7 +52,7 @@ class CommunityLayout:
         self.make_meta_graph()
         self.subg_positions()
 
-        return self.full_positions()
+        return self.full_positions
 
     def display(self, colors = None, bundle = False, complex_alphas = True):
 

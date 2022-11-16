@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "community-layout"
-version = "1.0.2"
+version = "1.0.3"
 description = "A Python package for community-separated layout of large networkx graphs."
 readme = "README.md"
 authors = [{ name = "Alex Davies", email = "alexander.davies@bristol.ac.uk" }]
@@ -19,12 +19,7 @@ classifiers=[
     'Programming Language :: Python :: 3'
 ]
 keywords = ["networkx", "graph", "community", "layout"]
-dependencies = ["networkx",
-    "pandas",
-    "numpy",
-    "matplotlib",
-    "scipy"
-]
+dependencies = ["networkx"]
 requires-python = ">=3.6"
 
 [project.optional-dependencies]

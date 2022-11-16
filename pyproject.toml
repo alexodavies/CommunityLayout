@@ -22,7 +22,8 @@ keywords = ["networkx", "graph", "community", "layout"]
 dependencies = ["networkx",
     "pandas",
     "numpy",
-    "matplotlib"
+    "matplotlib",
+    "scipy"
 ]
 requires-python = ">=3.6"
 

@@ -1,6 +1,8 @@
 # Community Layout
 ### Layout of large networkx graphs with community segmentation
 
+![](https://raw.githubusercontent.com/neutralpronoun/CommunityLayout/main/community_layout_example.jpeg)
+
 A small package used to visualise community-structured networkx graphs.
 
 Layout of communities individually, with communities themselves arranged according to their inter-links, allows far faster visualisation of large graphs.
@@ -61,7 +63,7 @@ Note: Edge bundling is currently a much heavier process than the community layou
 
 ### Requirements
 
-Requires the packages `numpy`, `pandas`, `tqdm` and `networkx` to be installed.
+Requires the packages `numpy`, `pandas`, `tqdm`, `scipy` and `networkx` to be installed.
 
 `matplotlib` is required for figure plotting. Edge bundling requires `datashader` and `scikit-image`.
 

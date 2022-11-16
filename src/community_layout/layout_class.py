@@ -146,6 +146,8 @@ class CommunityLayout:
         if ax is None:
             fig, ax = plt.subplots(figsize=(12, 12))
             save = True
+        else:
+            save = False
         nx.draw_networkx_nodes(self.G, pos=self.full_positions, node_size=2, ax = ax, node_color=colors)
         nx.draw_networkx_edges(self.G, pos=self.full_positions, node_size=2, width=alphas, alpha=alphas, ax = ax)
 

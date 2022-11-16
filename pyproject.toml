@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "community-layout"
-version = "1.0.3"
+version = "1.0.4"
 description = "A Python package for community-separated layout of large networkx graphs."
 readme = "README.md"
 authors = [{ name = "Alex Davies", email = "alexander.davies@bristol.ac.uk" }]

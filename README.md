@@ -46,6 +46,8 @@ CommunityLayout(self,
 
 These are designed to work with networkx functions, but custom functions will work assuming similar syntax and that they return the same objects.
 
+`community_algorithm` can also be a list of pre-determined communities, ie `["community_1":{"node_id1", "node_id2",...}, "community_2":{"node_id3", "node_id4",...}]`.
+
 `community_compression` controls the scale compression of individual community sub-layouts.
 Lower values will result in each community occupying smaller portions of the overall layout.
 

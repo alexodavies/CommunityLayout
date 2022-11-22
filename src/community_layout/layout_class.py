@@ -18,7 +18,7 @@ def load_original():
 
     networkx.Graph of the musae facebook graph, without node or edge attributes.
     """
-    filename = "../../example_data/musae_facebook_edges.csv"
+    filename = "example_data/musae_facebook_edges.csv"
 
     social_data = pd.read_csv(filename, delimiter=",", skiprows=0, dtype = str)
     G = nx.from_pandas_edgelist(social_data, "id_1", "id_2", create_using=nx.Graph)
@@ -38,7 +38,9 @@ class CommunityLayout:
         :param layout_algorithm: algorithm with the same syntax and returns as a networkx layout algorithm
         :param layout_kwargs: kwargs (e.g. iterations) to be passed to layout algorithm
         :param community_compression: Factor by which to scale-down community sub-layouts
-        :param community_algorithm: Algorithm used to partition graph into communities. Should have the same syntax and returns as networkx.algorithm.community algorithms
+        :param community_algorithm: Algorithm used to partition graph into communities.
+                                    Should have the same syntax and returns as networkx.algorithm.community algorithms
+                                    OR list of partitions (as from nx.algorithms.community.louvain_communities)
         :param community_kwargs: kwargs to pass to community algorithm (e.g. resolution)
         """
 
@@ -88,7 +90,7 @@ class CommunityLayout:
 
         Dictionary of form {"node_id":(x,y),...}
         """
-
+        print(f"Building meta-graph")
         # Find communities and construct and calculate positions for meta-graph based on their inter-connections
         self.make_meta_graph()
 
@@ -165,7 +167,12 @@ class CommunityLayout:
 
         Partition of node communities, {"community_id":{"node_id1", "node_id2", "node_id3",...}, ...}
         """
-        partition = self.community_algorithm(self.G, **self.community_kwargs)
+
+        if type(self.community_algorithm) == list:
+            # User can pass already assigned communities
+            partition = self.community_algorithm
+        else:
+            partition = self.community_algorithm(self.G, **self.community_kwargs)
         return partition
 
     def make_meta_graph(self):
@@ -259,7 +266,7 @@ class CommunityLayout:
         Calculate layouts for each community subgraph. Position center according to meta-graph layout.
         """
 
-        self.meta_position(self.metaG)
+        self.meta_position()
 
         pos_dict = {comm:self.layout_algorithm(self.subgraphs[comm],
                                                center=self.metapos[comm],
